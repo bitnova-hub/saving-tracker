@@ -15,4 +15,4 @@ A simple and clean personal savings tracker website.
 - JavaScript
 
 ## Live Demo
-[View Website](https://resplendent-kheer-d02285.netlify.app/)
+[View Website](https://bitnova-hub.github.io/saving-tracker/)
