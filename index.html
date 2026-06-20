@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>بیت النور – روشنی کا گھر</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;600;700&family=Noto+Nastaliq+Urdu:wght@400;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream:   #f9f5ee;
+      --cream2:  #f2ead8;
+      --white:   #ffffff;
+      --navy:    #0f2340;
+      --navy2:   #1a3560;
+      --teal:    #1b6b5a;
+      --teal2:   #24906e;
+      --gold:    #b8922a;
+      --gold2:   #d4a93a;
+      --gold3:   #f0c84a;
+      --text:    #1a1a2e;
+      --text2:   #3d3d55;
+      --muted:   #7a7a8c;
+      --border:  #ddd5c0;
+      --border2: rgba(184,146,42,0.3);
+      --shadow:  0 4px 24px rgba(15,35,64,0.10);
+      --shadow2: 0 8px 40px rgba(15,35,64,0.16);
+    }
+ 
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+ 
+    body {
+      background: var(--cream);
+      color: var(--text);
+      font-family: 'Noto Nastaliq Urdu','Scheherazade New',serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+ 
+    /* ── HEADER ── */
+    header {
+      background: var(--navy);
+      box-shadow: 0 2px 20px rgba(15,35,64,0.4);
+      position: sticky; top: 0; z-index: 100;
+    }
+ 
+    .top-bar {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.65rem 2.5rem;
+      background: var(--navy2);
+      font-size: 0.78rem; color: rgba(255,255,255,0.55);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .bismillah-bar {
+      font-family: 'Scheherazade New',serif;
+      font-size: 1.15rem; color: var(--gold3);
+      letter-spacing: 0.03em;
+    }
+ 
+    .header-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.9rem 2.5rem;
+    }
+ 
+    .logo-block {
+      display: flex; align-items: center; gap: 0.9rem;
+    }
+    .logo-emblem {
+      width: 46px; height: 46px;
+      background: linear-gradient(135deg, var(--gold2), var(--gold));
+      border-radius: 10px;
+      display: grid; place-items: center;
+      font-size: 1.4rem;
+      box-shadow: 0 4px 14px rgba(184,146,42,0.4);
+      flex-shrink: 0;
+    }
+    .logo-text-ar {
+      font-family: 'Scheherazade New',serif;
+      font-size: 1.5rem; font-weight: 700;
+      color: #fff; line-height: 1.1;
+    }
+    .logo-text-en {
+      font-family: 'Playfair Display',serif;
+      font-size: 0.72rem; color: rgba(255,255,255,0.5);
+      letter-spacing: 0.15em; text-transform: uppercase;
+    }
+ 
+    nav {
+      display: flex; align-items: center; gap: 0.2rem;
+    }
+    nav a {
+      color: rgba(255,255,255,0.65);
+      text-decoration: none;
+      padding: 0.42rem 1rem;
+      border-radius: 6px;
+      font-size: 0.84rem;
+      transition: all 0.22s;
+      white-space: nowrap;
+    }
+    nav a:hover { background: rgba(255,255,255,0.09); color: #fff; }
+    nav a.active {
+      background: var(--teal);
+      color: #fff;
+    }
+ 
+    /* ── PRAYER BAR ── */
+    .prayer-bar {
+      background: var(--white);
+      border-bottom: 2px solid var(--border);
+      box-shadow: 0 2px 10px rgba(15,35,64,0.06);
+    }
+    .prayer-bar-inner {
+      max-width: 1060px; margin: 0 auto;
+      display: flex; justify-content: space-around; flex-wrap: wrap;
+      padding: 0.55rem 1.5rem; gap: 0.25rem;
+    }
+    .pt {
+      text-align: center; padding: 0.4rem 1rem;
+      border-radius: 6px; transition: background 0.2s;
+    }
+    .pt .pname { font-size: 0.7rem; color: var(--muted); display: block; font-family:'Noto Nastaliq Urdu',serif; }
+    .pt .ptime { font-size: 1rem; color: var(--navy); font-weight: 700; display: block; direction: ltr; font-family:'Playfair Display',serif; }
+    .pt.active { background: var(--teal); border-radius: 8px; }
+    .pt.active .pname { color: rgba(255,255,255,0.75); }
+    .pt.active .ptime { color: #fff; }
+ 
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(160deg, var(--navy) 0%, var(--navy2) 55%, var(--teal) 100%);
+      text-align: center;
+      padding: 5rem 2rem 4.5rem;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        radial-gradient(circle at 20% 50%, rgba(184,146,42,0.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(27,107,90,0.12) 0%, transparent 40%);
+      pointer-events: none;
+    }
+    .hero-geo {
+      position: absolute; inset: 0; pointer-events: none; overflow: hidden;
+    }
+    .hero-geo svg { width: 100%; height: 100%; opacity: 0.04; }
+ 
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.7);
+      font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase;
+      padding: 0.35rem 1.2rem; border-radius: 20px;
+      margin-bottom: 1.4rem;
+      font-family: 'Playfair Display',serif;
+    }
+    .hero-title {
+      font-family: 'Scheherazade New',serif;
+      font-size: clamp(2.8rem,7vw,4.8rem);
+      color: #fff;
+      font-weight: 700;
+      line-height: 1.2;
+      text-shadow: 0 4px 30px rgba(0,0,0,0.3);
+      margin-bottom: 0.5rem;
+    }
+    .hero-subtitle {
+      font-family: 'Playfair Display',serif;
+      font-size: 0.95rem; color: rgba(255,255,255,0.45);
+      letter-spacing: 0.18em; text-transform: uppercase;
+      margin-bottom: 2rem;
+    }
+    .hero-divider {
+      display: flex; align-items: center; gap: 1rem;
+      max-width: 320px; margin: 0 auto;
+      color: var(--gold2);
+    }
+    .hero-divider::before,.hero-divider::after {
+      content:''; flex:1; height:1px;
+      background: linear-gradient(90deg,transparent,var(--gold2),transparent);
+    }
+ 
+    /* ── MAIN LAYOUT ── */
+    .wrapper {
+      max-width: 1060px; margin: 0 auto;
+      padding: 3rem 1.5rem;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.6rem;
+    }
+    @media(max-width:700px){.wrapper{grid-template-columns:1fr}}
+ 
+    /* ── SECTION HEADING ── */
+    .sec-head {
+      grid-column: 1/-1;
+      display: flex; align-items: center; gap: 0.9rem;
+      padding-bottom: 0.9rem;
+      border-bottom: 2px solid var(--border);
+      margin-top: 0.5rem;
+    }
+    .sec-icon {
+      width: 36px; height: 36px; border-radius: 8px;
+      background: var(--navy);
+      display: grid; place-items: center;
+      font-size: 1.1rem; flex-shrink: 0;
+    }
+    .sec-title {
+      font-family: 'Scheherazade New',serif;
+      font-size: 1.3rem; color: var(--navy); font-weight: 600;
+    }
+    .sec-line { flex:1; height:1px; background: var(--border); }
+ 
+    /* ── CARDS ── */
+    .card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      transition: box-shadow 0.3s, transform 0.3s;
+    }
+    .card:hover {
+      box-shadow: var(--shadow2);
+      transform: translateY(-3px);
+    }
+    .card.full { grid-column: 1/-1; }
+ 
+    .card-head {
+      display: flex; align-items: center; gap: 0.8rem;
+      padding: 1.1rem 1.5rem;
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 100%);
+    }
+    .ch-icon {
+      width: 34px; height: 34px; border-radius: 7px;
+      background: rgba(255,255,255,0.12);
+      display: grid; place-items: center; font-size: 1.1rem;
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+    .ch-title {
+      font-family: 'Scheherazade New',serif;
+      font-size: 1.15rem; color: #fff; font-weight: 600;
+    }
+    .ch-badge {
+      margin-right: auto;
+      font-size: 0.68rem; padding: 0.18rem 0.65rem;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 20px; color: rgba(255,255,255,0.7);
+    }
+ 
+    .card-body { padding: 1.6rem; }
+ 
+    /* ── AYAT ── */
+    .ayat-arabic {
+      font-family: 'Scheherazade New',serif;
+      font-size: clamp(1.6rem,3.5vw,2.2rem);
+      line-height: 2.2; color: var(--navy);
+      text-align: center;
+      background: linear-gradient(135deg,#f0f6ff,#e8f4f0);
+      border-radius: 10px;
+      padding: 1.2rem 1.5rem;
+      margin-bottom: 1.2rem;
+      border: 1px solid rgba(27,107,90,0.15);
+    }
+    .ayat-urdu {
+      font-size: 1rem; line-height: 2.2; color: var(--text2);
+      padding: 1rem 1.2rem;
+      background: var(--cream);
+      border-right: 4px solid var(--teal);
+      border-radius: 0 6px 6px 0;
+      margin-bottom: 1rem;
+    }
+    .ayat-ref {
+      font-size: 0.78rem; color: var(--muted);
+      text-align: left; padding: 0.5rem 0.8rem;
+      background: #f5f5f8; border-radius: 6px;
+      direction: ltr; font-family:'Playfair Display',serif;
+    }
+ 
+    /* ── HADITH ── */
+    .hadith-arabic {
+      font-family: 'Scheherazade New',serif;
+      font-size: 1.6rem; line-height: 2;
+      color: var(--navy); text-align: center;
+      padding: 1rem; margin-bottom: 1rem;
+      border-bottom: 1px dashed var(--border);
+    }
+    .hadith-text {
+      font-size: 1rem; line-height: 2.2; color: var(--text2);
+      margin-bottom: 1rem;
+    }
+    .hadith-source {
+      font-size: 0.75rem; color: var(--muted);
+      padding: 0.6rem 0.9rem;
+      background: #f0f0f5; border-radius: 6px;
+      border-right: 3px solid var(--gold);
+    }
+ 
+    /* ── DUA TABS ── */
+    .tab-row {
+      display: flex; gap: 0.35rem; flex-wrap: wrap;
+      padding: 1rem 1.5rem 0;
+    }
+    .tbtn {
+      font-family: 'Noto Nastaliq Urdu',serif;
+      font-size: 0.8rem; padding: 0.35rem 0.9rem;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      background: transparent; color: var(--muted);
+      cursor: pointer; transition: all 0.2s;
+    }
+    .tbtn:hover { border-color: var(--teal); color: var(--teal); }
+    .tbtn.active { background: var(--teal); border-color: var(--teal); color: #fff; }
+ 
+    .dua-pane { display: none; }
+    .dua-pane.on { display: block; }
+ 
+    .dua-item {
+      padding: 1.2rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .dua-item:last-child { border-bottom: none; }
+    .dua-lbl {
+      font-size: 0.82rem; color: var(--teal);
+      font-weight: 700; margin-bottom: 0.5rem;
+    }
+    .dua-ar {
+      font-family: 'Scheherazade New',serif;
+      font-size: 1.45rem; line-height: 2;
+      color: var(--navy); text-align: center;
+      background: linear-gradient(135deg,#f0f8f5,#eaf3ff);
+      padding: 0.7rem 1rem; border-radius: 8px; margin-bottom: 0.6rem;
+    }
+    .dua-ur { font-size: 0.88rem; line-height: 2; color: var(--text2); }
+ 
+    /* ── ZIKR ── */
+    .zikr-sel {
+      width: 100%; padding: 0.75rem 1rem;
+      background: var(--cream); border: 1.5px solid var(--border);
+      color: var(--text); border-radius: 8px;
+      font-family: 'Noto Nastaliq Urdu',serif; font-size: 0.92rem;
+      margin-bottom: 1.4rem; cursor: pointer; direction: rtl;
+      transition: border-color 0.2s;
+    }
+    .zikr-sel:focus { outline: none; border-color: var(--teal); }
+ 
+    .zikr-ar {
+      font-family: 'Scheherazade New',serif;
+      font-size: 1.9rem; color: var(--navy);
+      text-align: center; line-height: 1.8; margin-bottom: 0.6rem;
+    }
+    .zikr-tgt { font-size: 0.78rem; color: var(--muted); text-align: center; margin-bottom: 1rem; }
+ 
+    .prog-track {
+      height: 6px; background: var(--cream2);
+      border-radius: 3px; overflow: hidden; margin-bottom: 1.4rem;
+    }
+    .prog-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--teal), var(--gold2));
+      border-radius: 3px; transition: width 0.3s;
+    }
+ 
+    .ctr-circle {
+      width: 110px; height: 110px; border-radius: 50%;
+      border: 3px solid var(--navy);
+      background: linear-gradient(135deg, var(--navy), var(--navy2));
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      margin: 0 auto 1.2rem; cursor: pointer;
+      user-select: none; transition: transform 0.1s, box-shadow 0.2s;
+      box-shadow: 0 6px 24px rgba(15,35,64,0.25);
+    }
+    .ctr-circle:hover { box-shadow: 0 10px 32px rgba(15,35,64,0.35); }
+    .ctr-circle:active { transform: scale(0.91); }
+    .ctr-num {
+      font-size: 2.2rem; font-weight: 700; color: #fff;
+      line-height: 1; direction: ltr; font-family:'Playfair Display',serif;
+    }
+    .ctr-hint { font-size: 0.68rem; color: rgba(255,255,255,0.55); margin-top: 0.2rem; }
+ 
+    .ctr-btns { display: flex; gap: 0.6rem; justify-content: center; }
+    .ctr-btns button {
+      padding: 0.42rem 1.1rem;
+      border: 1.5px solid var(--border);
+      border-radius: 7px; background: transparent;
+      color: var(--text2); cursor: pointer; font-size: 0.8rem;
+      transition: all 0.2s;
+    }
+    .ctr-btns button:hover { background: var(--navy); color: #fff; border-color: var(--navy); }
+ 
+    /* ── HIJRI CARD ── */
+    .hijri-box {
+      text-align: center;
+      background: linear-gradient(135deg,var(--navy),var(--navy2));
+      border-radius: 10px; padding: 1.4rem; margin-bottom: 1.2rem;
+    }
+    .hijri-big {
+      font-family: 'Scheherazade New',serif;
+      font-size: 1.9rem; color: var(--gold3); font-weight: 600;
+    }
+    .hijri-sm { font-size: 0.8rem; color: rgba(255,255,255,0.5); margin-top: 0.3rem; font-family:'Playfair Display',serif; }
+ 
+    .ev-list { margin-top: 0.5rem; }
+    .ev { display: flex; gap: 0.75rem; padding: 0.7rem 0; border-bottom: 1px solid var(--border); align-items: flex-start; }
+    .ev:last-child { border-bottom: none; }
+    .ev-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--teal2); flex-shrink: 0; margin-top: 5px; }
+    .ev-name { font-size: 0.87rem; color: var(--text); }
+    .ev-date { font-size: 0.7rem; color: var(--muted); margin-top: 0.1rem; font-family:'Playfair Display',serif; }
+ 
+    /* ── NAMES GRID ── */
+    .names-g {
+      display: grid;
+      grid-template-columns: repeat(auto-fill,minmax(128px,1fr));
+      gap: 0.65rem;
+    }
+    .name-chip {
+      text-align: center; padding: 0.8rem 0.4rem;
+      background: var(--cream); border: 1px solid var(--border);
+      border-radius: 8px; transition: all 0.2s; cursor: default;
+    }
+    .name-chip:hover {
+      background: var(--navy); border-color: var(--navy);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 14px rgba(15,35,64,0.18);
+    }
+    .name-chip:hover .nc-ar,.name-chip:hover .nc-ur,.name-chip:hover .nc-n { color: #fff; }
+    .nc-n { font-size: 0.6rem; color: rgba(100,100,120,0.5); direction: ltr; display: block; font-family:'Playfair Display',serif; }
+    .nc-ar { font-family:'Scheherazade New',serif; font-size: 1.1rem; color: var(--navy); display: block; }
+    .nc-ur { font-size: 0.68rem; color: var(--muted); display: block; margin-top: 0.15rem; }
+ 
+    /* ── TOPICS ── */
+    .topics-g {
+      display: grid; grid-template-columns: repeat(auto-fill,minmax(140px,1fr)); gap: 0.75rem;
+    }
+    .topic {
+      padding: 1.1rem 0.8rem; background: var(--cream);
+      border: 1px solid var(--border); border-radius: 10px;
+      text-align: center; cursor: pointer; transition: all 0.22s;
+    }
+    .topic:hover {
+      background: var(--navy); border-color: var(--navy);
+      transform: translateY(-3px); box-shadow: 0 6px 18px rgba(15,35,64,0.2);
+    }
+    .topic:hover .topic-lbl { color: #fff; }
+    .topic-ico { font-size: 1.55rem; margin-bottom: 0.4rem; }
+    .topic-lbl { font-size: 0.84rem; color: var(--text2); }
+ 
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy);
+      color: rgba(255,255,255,0.55);
+      text-align: center; padding: 3rem 1.5rem;
+      margin-top: 2rem;
+    }
+    .ft-logo { font-family:'Scheherazade New',serif; font-size: 1.8rem; color: #fff; margin-bottom: 0.3rem; }
+    .ft-sub { font-family:'Playfair Display',serif; font-size: 0.72rem; letter-spacing: 0.1em; color: rgba(255,255,255,0.35); text-transform: uppercase; margin-bottom: 1.2rem; }
+    .ft-sep { width: 50px; height: 2px; background: var(--gold2); margin: 1rem auto; border-radius: 1px; }
+    .ft-dua { font-family:'Scheherazade New',serif; font-size: 1.1rem; color: var(--gold3); line-height: 1.9; }
+    .ft-dua-ur { font-size: 0.78rem; color: rgba(255,255,255,0.4); margin-top: 0.4rem; }
+ 
+    /* ── SCROLL TOP ── */
+    #stop {
+      position: fixed; bottom: 2rem; left: 2rem; z-index: 200;
+      width: 42px; height: 42px; border-radius: 8px;
+      background: var(--navy); border: 1px solid rgba(255,255,255,0.1);
+      color: #fff; font-size: 1rem; cursor: pointer;
+      display: none; place-items: center;
+      box-shadow: 0 4px 16px rgba(15,35,64,0.3);
+      transition: background 0.2s;
+    }
+    #stop.on { display: grid; }
+    #stop:hover { background: var(--teal); }
+ 
+    /* ── HIDDEN PANES ── */
+    .dpane { display: none; }
+    .dpane.on { display: block; }
+ 
+    @media(max-width:600px){
+      .header-inner { flex-direction: column; gap: 0.8rem; align-items: flex-start; }
+      nav { overflow-x: auto; flex-wrap: nowrap; width: 100%; padding-bottom: 0.3rem; }
+      nav a { white-space: nowrap; }
+    }
+  </style>
+</head>
+<body>
+ 
+<!-- HEADER -->
+<header>
+  <div class="top-bar">
+    <span id="greg-date" style="direction:ltr;font-family:'Playfair Display',serif">Loading...</span>
+    <span class="bismillah-bar">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</span>
+    <span id="hijri-sm" style="direction:rtl">Loading...</span>
+  </div>
+  <div class="header-inner">
+    <div class="logo-block">
+      <div class="logo-emblem">☽</div>
+      <div>
+        <div class="logo-text-ar">بَیتُ النُّوْر</div>
+        <div class="logo-text-en">Bayt-un-Noor · House of Light</div>
+      </div>
+    </div>
+    <nav>
+      <a href="#quran" class="active">آیت</a>
+      <a href="#hadith">حدیث</a>
+      <a href="#duaen">دعائیں</a>
+      <a href="#zikr">ذکر</a>
+      <a href="#asmaul">اسماء</a>
+      <a href="#calendar">کیلنڈر</a>
+      <a href="#topics">موضوعات</a>
+    </nav>
+  </div>
+</header>
+ 
+<!-- PRAYER BAR -->
+<div class="prayer-bar">
+  <div class="prayer-bar-inner">
+    <div class="pt"><span class="pname">فجر</span><span class="ptime">04:22</span></div>
+    <div class="pt"><span class="pname">طلوع</span><span class="ptime">05:47</span></div>
+    <div class="pt active"><span class="pname">ظہر</span><span class="ptime">12:15</span></div>
+    <div class="pt"><span class="pname">عصر</span><span class="ptime">03:45</span></div>
+    <div class="pt"><span class="pname">مغرب</span><span class="ptime">06:52</span></div>
+    <div class="pt"><span class="pname">عشاء</span><span class="ptime">08:15</span></div>
+  </div>
+</div>
+ 
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-geo">
+    <svg viewBox="0 0 1200 400" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="600,20 620,80 680,80 632,116 650,176 600,140 550,176 568,116 520,80 580,80" fill="white"/>
+      <circle cx="100" cy="200" r="80" fill="none" stroke="white" stroke-width="1"/>
+      <circle cx="1100" cy="200" r="80" fill="none" stroke="white" stroke-width="1"/>
+      <polygon points="200,50 210,80 240,80 218,97 226,127 200,110 174,127 182,97 160,80 190,80" fill="white"/>
+      <polygon points="1000,50 1010,80 1040,80 1018,97 1026,127 1000,110 974,127 982,97 960,80 990,80" fill="white"/>
+    </svg>
+  </div>
+  <div class="hero-badge">Islamic Knowledge & Spirituality</div>
+  <h1 class="hero-title">بَیتُ النُّوْر</h1>
+  <p class="hero-subtitle">House of Light · روشنی کا گھر</p>
+  <div class="hero-divider">✦</div>
+</section>
+ 
+<!-- MAIN CONTENT -->
+<div class="wrapper">
+ 
+  <!-- QURAN -->
+  <div class="sec-head" id="quran">
+    <div class="sec-icon">📖</div>
+    <span class="sec-title">روزانہ قرآنی آیت</span>
+    <div class="sec-line"></div>
+  </div>
+ 
+  <div class="card full">
+    <div class="card-head">
+      <div class="ch-icon">📖</div>
+      <span class="ch-title">آیتِ روز</span>
+      <span class="ch-badge">Daily Verse</span>
+    </div>
+    <div class="card-body">
+      <div class="dpane on" id="av0">
+        <div class="ayat-arabic">اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ ۚ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ</div>
+        <div class="ayat-urdu">اللہ — اس کے سوا کوئی معبود نہیں۔ وہ ہمیشہ زندہ ہے، سب کو تھامنے والا ہے۔ اسے نہ اونگھ آتی ہے نہ نیند۔</div>
+        <div class="ayat-ref">Surah Al-Baqarah – Ayat al-Kursi (2:255)</div>
+      </div>
+      <div class="dpane" id="av1">
+        <div class="ayat-arabic">إِنَّ مَعَ الْعُسْرِ يُسْرًا</div>
+        <div class="ayat-urdu">بے شک تکلیف کے ساتھ آسانی ہے۔</div>
+        <div class="ayat-ref">Surah Al-Sharh (94:6)</div>
+      </div>
+      <div class="dpane" id="av2">
+        <div class="ayat-arabic">وَمَن يَتَّقِ اللَّهَ يَجْعَل لَّهُ مَخْرَجًا وَيَرْزُقْهُ مِنْ حَيْثُ لَا يَحْتَسِبُ</div>
+        <div class="ayat-urdu">اور جو اللہ سے ڈرتا ہے، اللہ اس کے لیے راستہ نکالتا ہے، اور اسے ایسی جگہ سے رزق دیتا ہے جہاں سے اسے گمان بھی نہیں ہوتا۔</div>
+        <div class="ayat-ref">Surah Al-Talaq (65:2–3)</div>
+      </div>
+      <div class="dpane" id="av3">
+        <div class="ayat-arabic">فَاذْكُرُونِي أَذْكُرْكُمْ وَاشْكُرُوا لِي وَلَا تَكْفُرُونِ</div>
+        <div class="ayat-urdu">پس تم مجھے یاد کرو، میں تمھیں یاد کروں گا، اور میرا شکر ادا کرو اور ناشکری مت کرو۔</div>
+        <div class="ayat-ref">Surah Al-Baqarah (2:152)</div>
+      </div>
+      <div class="dpane" id="av4">
+        <div class="ayat-arabic">وَإِذَا سَأَلَكَ عِبَادِي عَنِّي فَإِنِّي قَرِيبٌ</div>
+        <div class="ayat-urdu">اور جب میرے بندے تجھ سے میرے بارے میں سوال کریں تو میں قریب ہوں۔</div>
+        <div class="ayat-ref">Surah Al-Baqarah (2:186)</div>
+      </div>
+      <div class="dpane" id="av5">
+        <div class="ayat-arabic">وَبَشِّرِ الصَّابِرِينَ</div>
+        <div class="ayat-urdu">اور صبر کرنے والوں کو خوشخبری دے دو۔</div>
+        <div class="ayat-ref">Surah Al-Baqarah (2:155)</div>
+      </div>
+      <div class="dpane" id="av6">
+        <div class="ayat-arabic">قُلْ هُوَ اللَّهُ أَحَدٌ ۝ اللَّهُ الصَّمَدُ</div>
+        <div class="ayat-urdu">کہو: وہ اللہ ایک ہے، اللہ بے نیاز ہے۔</div>
+        <div class="ayat-ref">Surah Al-Ikhlas (112:1–2)</div>
+      </div>
+    </div>
+  </div>
+ 
+  <!-- HADITH -->
+  <div class="sec-head" id="hadith" style="margin-top:1rem">
+    <div class="sec-icon">📜</div>
+    <span class="sec-title">روزانہ حدیث</span>
+    <div class="sec-line"></div>
+  </div>
+ 
+  <div class="card full">
+    <div class="card-head" style="background:linear-gradient(135deg,#1b3a1e,#2a5c30)">
+      <div class="ch-icon">📜</div>
+      <span class="ch-title">حدیثِ روز</span>
+      <span class="ch-badge">Daily Hadith</span>
+    </div>
+    <div class="card-body">
+      <div class="dpane on" id="hd0">
+        <div class="hadith-arabic">إِنَّمَا الْأَعْمَالُ بِالنِّيَّاتِ</div>
+        <p class="hadith-text">اعمال کا دارومدار نیتوں پر ہے۔ ہر شخص کو وہی ملتا ہے جس کی اس نے نیت کی۔</p>
+        <div class="hadith-source">📚 صحیح البخاری — حدیث ۱ | راوی: حضرت عمر بن الخطاب رضی اللہ عنہ</div>
+      </div>
+      <div class="dpane" id="hd1">
+        <div class="hadith-arabic">الدِّينُ النَّصِيحَةُ</div>
+        <p class="hadith-text">دین خیرخواہی کا نام ہے۔ صحابہ نے عرض کیا: کس کے لیے؟ آپ ﷺ نے فرمایا: اللہ، اس کی کتاب، اس کے رسول، مسلم حکام اور عام مسلمانوں کے لیے۔</p>
+        <div class="hadith-source">📚 صحیح مسلم — حدیث ۵۵ | راوی: حضرت تمیم الداری رضی اللہ عنہ</div>
+      </div>
+      <div class="dpane" id="hd2">
+        <div class="hadith-arabic">لَا يُؤْمِنُ أَحَدُكُمْ حَتَّى يُحِبَّ لِأَخِيهِ مَا يُحِبُّ لِنَفْسِهِ</div>
+        <p class="hadith-text">تم میں سے کوئی اس وقت تک مؤمن نہیں ہو سکتا جب تک وہ اپنے بھائی کے لیے وہی پسند نہ کرے جو اپنے لیے پسند کرتا ہے۔</p>
+        <div class="hadith-source">📚 صحیح البخاری — حدیث ۱۳ | راوی: حضرت انس رضی اللہ عنہ</div>
+      </div>
+      <div class="dpane" id="hd3">
+        <div class="hadith-arabic">مَنْ صَمَتَ نَجَا</div>
+        <p class="hadith-text">جو خاموش رہا وہ نجات پا گیا۔ زبان کی حفاظت ایمان کی نشانی ہے۔</p>
+        <div class="hadith-source">📚 ترمذی | راوی: حضرت ابوہریرہ رضی اللہ عنہ</div>
+      </div>
+      <div class="dpane" id="hd4">
+        <div class="hadith-arabic">خَيْرُكُمْ مَنْ تَعَلَّمَ الْقُرْآنَ وَعَلَّمَهُ</div>
+        <p class="hadith-text">تم میں سے بہترین وہ ہے جو قرآن سیکھے اور سکھائے۔</p>
+        <div class="hadith-source">📚 صحیح البخاری — حدیث ۵۰۲۷ | راوی: حضرت عثمان رضی اللہ عنہ</div>
+      </div>
+    </div>
+  </div>
+ 
+  <!-- DUAS -->
+  <div class="sec-head" id="duaen" style="margin-top:1rem">
+    <div class="sec-icon">🤲</div>
+    <span class="sec-title">مسنون دعائیں</span>
+    <div class="sec-line"></div>
+  </div>
+ 
+  <div class="card full">
+    <div class="card-head" style="background:linear-gradient(135deg,#1b3b6b,#24507a)">
+      <div class="ch-icon">🤲</div>
+      <span class="ch-title">روزمرہ کی دعائیں</span>
+      <span class="ch-badge">Masnoon Duas</span>
+    </div>
+    <div class="tab-row">
+      <button class="tbtn active" onclick="showDua('subah',this)">صبح کی دعائیں</button>
+      <button class="tbtn" onclick="showDua('sham',this)">شام کی دعائیں</button>
+      <button class="tbtn" onclick="showDua('khana',this)">کھانے کی دعائیں</button>
+      <button class="tbtn" onclick="showDua('safar',this)">سفر کی دعائیں</button>
+      <button class="tbtn" onclick="showDua('neend',this)">سونے جاگنے کی دعائیں</button>
+    </div>
+    <div class="card-body" style="padding-top:1rem">
+ 
+      <div class="dua-pane on" id="dp-subah">
+        <div class="dua-item">
+          <div class="dua-lbl">☀️ صبح اٹھنے کی دعا</div>
+          <div class="dua-ar">اَلْحَمْدُ لِلَّهِ الَّذِي أَحْيَانَا بَعْدَ مَا أَمَاتَنَا وَإِلَيْهِ النُّشُورُ</div>
+          <div class="dua-ur">تمام تعریفیں اللہ کے لیے جس نے ہمیں موت کے بعد (نیند سے) زندہ کیا اور اسی کی طرف (سب کو) اٹھنا ہے۔</div>
+        </div>
+        <div class="dua-item">
+          <div class="dua-lbl">🌅 صبح کی حفاظت کی دعا</div>
+          <div class="dua-ar">اَللّٰهُمَّ بِكَ أَصْبَحْنَا وَبِكَ أَمْسَيْنَا وَبِكَ نَحْيَا وَبِكَ نَمُوتُ وَإِلَيْكَ النُّشُورُ</div>
+          <div class="dua-ur">اے اللہ! تیرے نام سے ہم نے صبح کی، تیرے نام سے شام کی، تیرے سہارے جیتے ہیں اور مریں گے اور تیری ہی طرف لوٹنا ہے۔</div>
+        </div>
+        <div class="dua-item">
+          <div class="dua-lbl">🛡️ صبح کا اذکار</div>
+          <div class="dua-ar">أَصْبَحْنَا وَأَصْبَحَ الْمُلْكُ لِلَّهِ وَالْحَمْدُ لِلَّهِ</div>
+          <div class="dua-ur">ہم نے صبح کی اور صبح کی اللہ کی بادشاہت میں، اور تمام تعریفیں اللہ کے لیے ہیں۔</div>
+        </div>
+      </div>
+ 
+      <div class="dua-pane" id="dp-sham">
+        <div class="dua-item">
+          <div class="dua-lbl">🌙 شام کی دعا</div>
+          <div class="dua-ar">اَللّٰهُمَّ بِكَ أَمْسَيْنَا وَبِكَ أَصْبَحْنَا وَبِكَ نَحْيَا وَبِكَ نَمُوتُ وَإِلَيْكَ الْمَصِيرُ</div>
+          <div class="dua-ur">اے اللہ! تیرے نام سے ہم نے شام کی، تیرے نام سے صبح کی، تیرے سہارے جیتے اور مریں گے اور تیری ہی طرف لوٹنا ہے۔</div>
+        </div>
+        <div class="dua-item">
+          <div class="dua-lbl">⭐ شام کی پناہ کی دعا</div>
+          <div class="dua-ar">أَعُوذُ بِكَلِمَاتِ اللَّهِ التَّامَّاتِ مِنْ شَرِّ مَا خَلَقَ</div>
+          <div class="dua-ur">میں اللہ کے کامل کلمات کے ذریعے اس کی تمام مخلوق کی برائی سے پناہ مانگتا ہوں۔</div>
+        </div>
+      </div>
+ 
+      <div class="dua-pane" id="dp-khana">
+        <div class="dua-item">
+          <div class="dua-lbl">🍽️ کھانا شروع کرنے کی دعا</div>
+          <div class="dua-ar">بِسْمِ اللَّهِ وَعَلَى بَرَكَةِ اللَّهِ</div>
+          <div class="dua-ur">اللہ کے نام سے اور اللہ کی برکت کے ساتھ۔</div>
+        </div>
+        <div class="dua-item">
+          <div class="dua-lbl">✅ کھانے کے بعد کی دعا</div>
+          <div class="dua-ar">اَلْحَمْدُ لِلَّهِ الَّذِي أَطْعَمَنِي هٰذَا وَرَزَقَنِيهِ مِنْ غَيْرِ حَوْلٍ مِنِّي وَلَا قُوَّةٍ</div>
+          <div class="dua-ur">تمام تعریفیں اللہ کے لیے جس نے مجھے یہ کھانا کھلایا اور بغیر میری کسی طاقت و قوت کے مجھے رزق دیا۔</div>
+        </div>
+      </div>
+ 
+      <div class="dua-pane" id="dp-safar">
+        <div class="dua-item">
+          <div class="dua-lbl">🚗 سفر شروع کرنے کی دعا</div>
+          <div class="dua-ar">سُبْحَانَ الَّذِي سَخَّرَ لَنَا هَٰذَا وَمَا كُنَّا لَهُ مُقْرِنِينَ وَإِنَّا إِلَىٰ رَبِّنَا لَمُنقَلِبُونَ</div>
+          <div class="dua-ur">پاک ہے وہ جس نے اسے ہمارے لیے مسخر کیا اور بے شک ہم اپنے رب کی طرف لوٹنے والے ہیں۔</div>
+        </div>
+        <div class="dua-item">
+          <div class="dua-lbl">🏠 گھر سے نکلنے کی دعا</div>
+          <div class="dua-ar">بِسْمِ اللَّهِ تَوَكَّلْتُ عَلَى اللَّهِ وَلَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ</div>
+          <div class="dua-ur">اللہ کے نام سے، میں نے اللہ پر توکل کیا اور نہیں ہے کوئی طاقت اور قوت مگر اللہ کے ذریعے۔</div>
+        </div>
+      </div>
+ 
+      <div class="dua-pane" id="dp-neend">
+        <div class="dua-item">
+          <div class="dua-lbl">🌙 سونے کی دعا</div>
+          <div class="dua-ar">بِاسْمِكَ اللَّهُمَّ أَمُوتُ وَأَحْيَا</div>
+          <div class="dua-ur">اے اللہ! تیرے نام پر مرتا اور جیتا ہوں۔</div>
+        </div>
+        <div class="dua-item">
+          <div class="dua-lbl">🌅 جاگنے کی دعا</div>
+          <div class="dua-ar">اَلْحَمْدُ لِلَّهِ الَّذِي أَحْيَانَا بَعْدَ مَا أَمَاتَنَا وَإِلَيْهِ النُّشُورُ</div>
+          <div class="dua-ur">تمام تعریفیں اللہ کے لیے جس نے ہمیں نیند سے زندہ کیا۔</div>
+        </div>
+      </div>
+ 
+    </div>
+  </div>
+ 
+  <!-- ZIKR + CALENDAR side by side -->
+  <div class="sec-head" id="zikr" style="margin-top:1rem">
+    <div class="sec-icon">📿</div>
+    <span class="sec-title">ذکر و اذکار</span>
+    <div class="sec-line"></div>
+  </div>
+ 
+  <div class="card">
+    <div class="card-head" style="background:linear-gradient(135deg,#3b1a5c,#4a2070)">
+      <div class="ch-icon">📿</div>
+      <span class="ch-title">تسبیح کاؤنٹر</span>
+      <span class="ch-badge">Tasbeeh</span>
+    </div>
+    <div class="card-body" style="text-align:center">
+      <select class="zikr-sel" id="zs" onchange="chgZ()">
+        <option value="0">سُبْحَانَ اللَّهِ (۳۳ بار)</option>
+        <option value="1">اَلْحَمْدُ لِلَّهِ (۳۳ بار)</option>
+        <option value="2">اَللَّهُ أَكْبَرُ (۳۴ بار)</option>
+        <option value="3">لَا إِلَٰهَ إِلَّا اللَّهُ (۱۰۰ بار)</option>
+        <option value="4">أَسْتَغْفِرُ اللَّهَ (۱۰۰ بار)</option>
+        <option value="5">اَللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ (۱۰۰ بار)</option>
+      </select>
+      <div class="zikr-ar" id="zt">سُبْحَانَ اللَّهِ</div>
+      <div class="zikr-tgt" id="ztgt">ہدف: ۳۳</div>
+      <div class="prog-track"><div class="prog-fill" id="pf" style="width:0%"></div></div>
+      <div class="ctr-circle" onclick="inc()" id="cc">
+        <span class="ctr-num" id="cn">0</span>
+        <span class="ctr-hint">تھپتھپائیں</span>
+      </div>
+      <div class="ctr-btns">
+        <button onclick="rst()">ری سیٹ</button>
+        <button onclick="und()">واپس</button>
+      </div>
+    </div>
+  </div>
+ 
+  <div class="card" id="calendar">
+    <div class="card-head" style="background:linear-gradient(135deg,#1b4a3b,#226050)">
+      <div class="ch-icon">🗓️</div>
+      <span class="ch-title">اسلامی کیلنڈر</span>
+      <span class="ch-badge">Hijri Calendar</span>
+    </div>
+    <div class="card-body">
+      <div class="hijri-box">
+        <div class="hijri-big" id="hb">Loading...</div>
+        <div class="hijri-sm" id="gsub">Loading...</div>
+      </div>
+      <div class="ev-list">
+        <div class="ev"><div class="ev-dot" style="background:var(--gold2)"></div><div><div class="ev-name">عید الاضحٰی</div><div class="ev-date">10 Dhul Hijjah</div></div></div>
+        <div class="ev"><div class="ev-dot"></div><div><div class="ev-name">یومِ عرفہ</div><div class="ev-date">9 Dhul Hijjah</div></div></div>
+        <div class="ev"><div class="ev-dot"></div><div><div class="ev-name">یومِ عاشورہ</div><div class="ev-date">10 Muharram</div></div></div>
+        <div class="ev"><div class="ev-dot"></div><div><div class="ev-name">عید میلاد النبی ﷺ</div><div class="ev-date">12 Rabi' al-Awwal</div></div></div>
+        <div class="ev"><div class="ev-dot"></div><div><div class="ev-name">شبِ معراج</div><div class="ev-date">27 Rajab</div></div></div>
+        <div class="ev"><div class="ev-dot" style="background:var(--teal2)"></div><div><div class="ev-name">رمضان المبارک</div><div class="ev-date">1–30 Ramadan</div></div></div>
+      </div>
+    </div>
+  </div>
+ 
+  <!-- 99 NAMES -->
+  <div class="sec-head" id="asmaul" style="margin-top:1rem">
+    <div class="sec-icon">✨</div>
+    <span class="sec-title">اسماء الحسنیٰ — اللہ کے ۹۹ نام</span>
+    <div class="sec-line"></div>
+  </div>
+ 
+  <div class="card full">
+    <div class="card-head" style="background:linear-gradient(135deg,#1a2e5c,#243870)">
+      <div class="ch-icon">✨</div>
+      <span class="ch-title">اللہ تعالیٰ کے ۹۹ نام</span>
+      <span class="ch-badge">Asma ul Husna</span>
+    </div>
+    <div class="card-body">
+      <div class="names-g" id="ng"></div>
+    </div>
+  </div>
+ 
+  <!-- TOPICS -->
+  <div class="sec-head" id="topics" style="margin-top:1rem">
+    <div class="sec-icon">📚</div>
+    <span class="sec-title">قرآنی موضوعات</span>
+    <div class="sec-line"></div>
+  </div>
+ 
+  <div class="card full">
+    <div class="card-head">
+      <div class="ch-icon">📚</div>
+      <span class="ch-title">قرآنی موضوعات</span>
+      <span class="ch-badge">Quranic Topics</span>
+    </div>
+    <div class="card-body">
+      <div class="topics-g">
+        <div class="topic"><div class="topic-ico">🕌</div><div class="topic-lbl">نماز</div></div>
+        <div class="topic"><div class="topic-ico">💰</div><div class="topic-lbl">زکوٰۃ</div></div>
+        <div class="topic"><div class="topic-ico">🌙</div><div class="topic-lbl">روزہ</div></div>
+        <div class="topic"><div class="topic-ico">🕋</div><div class="topic-lbl">حج</div></div>
+        <div class="topic"><div class="topic-ico">❤️</div><div class="topic-lbl">محبت</div></div>
+        <div class="topic"><div class="topic-ico">⚖️</div><div class="topic-lbl">انصاف</div></div>
+        <div class="topic"><div class="topic-ico">🤝</div><div class="topic-lbl">اخوت</div></div>
+        <div class="topic"><div class="topic-ico">🌿</div><div class="topic-lbl">صبر</div></div>
+        <div class="topic"><div class="topic-ico">🙏</div><div class="topic-lbl">توکل</div></div>
+        <div class="topic"><div class="topic-ico">📖</div><div class="topic-lbl">علم</div></div>
+        <div class="topic"><div class="topic-ico">👪</div><div class="topic-lbl">خاندان</div></div>
+        <div class="topic"><div class="topic-ico">🌍</div><div class="topic-lbl">خلافت</div></div>
+        <div class="topic"><div class="topic-ico">💎</div><div class="topic-lbl">تقوٰی</div></div>
+        <div class="topic"><div class="topic-ico">🌺</div><div class="topic-lbl">جنت</div></div>
+        <div class="topic"><div class="topic-ico">🔥</div><div class="topic-lbl">آخرت</div></div>
+        <div class="topic"><div class="topic-ico">🌊</div><div class="topic-lbl">قیامت</div></div>
+      </div>
+    </div>
+  </div>
+ 
+</div><!-- /wrapper -->
+ 
+<!-- FOOTER -->
+<footer>
+  <div class="ft-logo">بَیتُ النُّوْر</div>
+  <div class="ft-sub">Bayt-un-Noor · House of Light</div>
+  <div class="ft-sep"></div>
+  <div class="ft-dua">رَبَّنَا أَتْمِمْ لَنَا نُورَنَا وَاغْفِرْ لَنَا</div>
+  <div class="ft-dua-ur">اے ہمارے رب! ہمارا نور پورا کر دے اور ہمیں بخش دے</div>
+  <div class="ft-sep"></div>
+  <p style="font-size:0.7rem;color:rgba(255,255,255,0.25);font-family:'Playfair Display',serif">
+    روشنی کا گھر — قرآن و سنت کی روشنی میں زندگی گزاریں
+  </p>
+</footer>
+ 
+<button id="stop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+ 
+<script>
+/* DATE */
+function hijri(){
+  const n=new Date();
+  try{
+    return new Intl.DateTimeFormat('ar-SA-u-ca-islamic',{year:'numeric',month:'long',day:'numeric'}).format(n);
+  }catch(e){
+    return '— ہجری تاریخ —';
+  }
+}
+(function(){
+  const n=new Date();
+  const g=n.toLocaleDateString('ur-PK',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+  document.getElementById('greg-date').textContent=g;
+  document.getElementById('gsub').textContent=g;
+  const h=hijri();
+  document.getElementById('hijri-sm').textContent=h;
+  document.getElementById('hb').textContent=h;
+ 
+  const dy=Math.floor((n-new Date(n.getFullYear(),0,0))/86400000);
+  const ai=dy%7, hi=dy%5;
+  document.querySelectorAll('[id^="av"]').forEach(e=>e.classList.remove('on'));
+  const ae=document.getElementById('av'+ai); if(ae)ae.classList.add('on');
+  document.querySelectorAll('[id^="hd"]').forEach(e=>e.classList.remove('on'));
+  const he=document.getElementById('hd'+hi); if(he)he.classList.add('on');
+})();
+ 
+/* DUA TABS */
+function showDua(k,btn){
+  document.querySelectorAll('.dua-pane').forEach(e=>e.classList.remove('on'));
+  document.getElementById('dp-'+k).classList.add('on');
+  document.querySelectorAll('.tbtn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+}
+ 
+/* ZIKR */
+const ZD=[
+  {t:'سُبْحَانَ اللَّهِ',n:33},
+  {t:'اَلْحَمْدُ لِلَّهِ',n:33},
+  {t:'اَللَّهُ أَكْبَرُ',n:34},
+  {t:'لَا إِلَٰهَ إِلَّا اللَّهُ',n:100},
+  {t:'أَسْتَغْفِرُ اللَّهَ',n:100},
+  {t:'اَللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ',n:100},
+];
+let cnt=0,zi=0;
+function upd(){
+  const t=ZD[zi].n;
+  document.getElementById('cn').textContent=cnt;
+  document.getElementById('pf').style.width=Math.min(100,(cnt/t)*100)+'%';
+  const cc=document.getElementById('cc');
+  if(cnt>=t){cc.style.background='linear-gradient(135deg,#1b6b5a,#24906e)';}
+  else{cc.style.background='linear-gradient(135deg,var(--navy),var(--navy2))';}
+}
+function chgZ(){
+  zi=parseInt(document.getElementById('zs').value);cnt=0;
+  document.getElementById('zt').textContent=ZD[zi].t;
+  document.getElementById('ztgt').textContent='ہدف: '+ZD[zi].n;
+  upd();
+}
+function inc(){if(cnt<ZD[zi].n)cnt++;upd();const cc=document.getElementById('cc');cc.style.transform='scale(0.91)';setTimeout(()=>cc.style.transform='',100);}
+function rst(){cnt=0;upd();}
+function und(){if(cnt>0){cnt--;upd();}}
+ 
+/* 99 NAMES */
+const N99=[
+  ['اَللَّهُ','اللہ'],['اَلرَّحْمَنُ','نہایت مہربان'],['اَلرَّحِيمُ','بار بار رحم کرنے والا'],
+  ['اَلْمَلِكُ','بادشاہ'],['اَلْقُدُّوسُ','پاک'],['اَلسَّلَامُ','سلامتی دینے والا'],
+  ['اَلْمُؤْمِنُ','امن دینے والا'],['اَلْمُهَيْمِنُ','نگہبان'],['اَلْعَزِيزُ','غالب'],
+  ['اَلْجَبَّارُ','قوت والا'],['اَلْمُتَكَبِّرُ','بڑائی والا'],['اَلْخَالِقُ','پیدا کرنے والا'],
+  ['اَلْبَارِئُ','بنانے والا'],['اَلْمُصَوِّرُ','صورت بنانے والا'],['اَلْغَفَّارُ','بخشنے والا'],
+  ['اَلْقَهَّارُ','غلبہ پانے والا'],['اَلْوَهَّابُ','عطا کرنے والا'],['اَلرَّزَّاقُ','رزق دینے والا'],
+  ['اَلْفَتَّاحُ','کشادہ کرنے والا'],['اَلْعَلِيمُ','سب جاننے والا'],['اَلْقَابِضُ','لینے والا'],
+  ['اَلْبَاسِطُ','دینے والا'],['اَلْخَافِضُ','نیچا کرنے والا'],['اَلرَّافِعُ','اٹھانے والا'],
+  ['اَلْمُعِزُّ','عزت دینے والا'],['اَلْمُذِلُّ','ذلت دینے والا'],['اَلسَّمِيعُ','سننے والا'],
+  ['اَلْبَصِيرُ','دیکھنے والا'],['اَلْحَكَمُ','فیصلہ کرنے والا'],['اَلْعَدْلُ','انصاف کرنے والا'],
+  ['اَللَّطِيفُ','باریک بین'],['اَلْخَبِيرُ','خبردار'],['اَلْحَلِيمُ','بردبار'],
+  ['اَلْعَظِيمُ','عظمت والا'],['اَلْغَفُورُ','معاف کرنے والا'],['اَلشَّكُورُ','قدردان'],
+  ['اَلْعَلِيُّ','بلند'],['اَلْكَبِيرُ','بڑا'],['اَلْحَفِيظُ','محافظ'],
+  ['اَلْمُقِيتُ','طاقت دینے والا'],['اَلْحَسِيبُ','حساب لینے والا'],['اَلْجَلِيلُ','جلیل'],
+  ['اَلْكَرِيمُ','کریم'],['اَلرَّقِيبُ','نگران'],['اَلْمُجِيبُ','قبول کرنے والا'],
+  ['اَلْوَاسِعُ','وسیع'],['اَلْحَكِيمُ','حکیم'],['اَلْوَدُودُ','محبت کرنے والا'],
+  ['اَلْمَجِيدُ','بزرگ'],['اَلْبَاعِثُ','اٹھانے والا'],['اَلشَّهِيدُ','حاضر ناظر'],
+  ['اَلْحَقُّ','سچ'],['اَلْوَكِيلُ','کارساز'],['اَلْقَوِيُّ','طاقتور'],
+  ['اَلْمَتِينُ','مضبوط'],['اَلْوَلِيُّ','دوست'],['اَلْحَمِيدُ','قابلِ تعریف'],
+  ['اَلْمُحْصِي','گننے والا'],['اَلْمُبْدِئُ','شروع کرنے والا'],['اَلْمُعِيدُ','دوبارہ بنانے والا'],
+  ['اَلْمُحْيِي','زندگی دینے والا'],['اَلْمُمِيتُ','موت دینے والا'],['اَلْحَيُّ','زندہ'],
+  ['اَلْقَيُّومُ','قائم'],['اَلْوَاجِدُ','واجد'],['اَلْمَاجِدُ','ماجد'],
+  ['اَلْوَاحِدُ','ایک'],['اَلأَحَدُ','یکتا'],['اَلصَّمَدُ','بے نیاز'],
+  ['اَلْقَادِرُ','قادر'],['اَلْمُقْتَدِرُ','طاقتور'],['اَلْمُقَدِّمُ','آگے کرنے والا'],
+  ['اَلْمُؤَخِّرُ','پیچھے کرنے والا'],['اَلأَوَّلُ','اول'],['اَلآخِرُ','آخر'],
+  ['اَلظَّاهِرُ','ظاہر'],['اَلْبَاطِنُ','باطن'],['اَلْوَالِي','والی'],
+  ['اَلْمُتَعَالِي','بلند'],['اَلْبَرُّ','نیکی کرنے والا'],['اَلتَّوَّابُ','توبہ قبول کرنے والا'],
+  ['اَلْمُنْتَقِمُ','بدلہ لینے والا'],['اَلْعَفُوُّ','معاف کرنے والا'],['اَلرَّؤُوفُ','شفقت کرنے والا'],
+  ['مَالِكُ الْمُلْكِ','بادشاہوں کا بادشاہ'],['ذُو الْجَلَالِ','جلال والا'],['اَلْمُقْسِطُ','انصاف کرنے والا'],
+  ['اَلْجَامِعُ','جمع کرنے والا'],['اَلْغَنِيُّ','بے نیاز'],['اَلْمُغْنِي','غنی کرنے والا'],
+  ['اَلْمَانِعُ','روکنے والا'],['اَلضَّارُّ','نقصان دینے والا'],['اَلنَّافِعُ','فائدہ دینے والا'],
+  ['اَلنُّورُ','نور'],['اَلْهَادِي','ہدایت دینے والا'],['اَلْبَدِيعُ','بے مثال'],
+  ['اَلْبَاقِي','باقی رہنے والا'],['اَلْوَارِثُ','وارث'],['اَلرَّشِيدُ','ہدایت کرنے والا'],
+  ['اَلصَّبُورُ','صبر کرنے والا']
+];
+const g=document.getElementById('ng');
+N99.forEach(([a,u],i)=>{
+  const c=document.createElement('div');c.className='name-chip';
+  c.innerHTML=`<span class="nc-n">${i+1}</span><span class="nc-ar">${a}</span><span class="nc-ur">${u}</span>`;
+  g.appendChild(c);
+});
+ 
+/* SCROLL TOP */
+window.addEventListener('scroll',()=>{
+  document.getElementById('stop').classList.toggle('on',scrollY>400);
+});
+ 
+/* NAV ACTIVE */
+window.addEventListener('scroll',()=>{
+  let cur='';
+  document.querySelectorAll('[id]').forEach(s=>{if(scrollY>=s.offsetTop-120)cur=s.id;});
+  document.querySelectorAll('nav a').forEach(a=>{
+    a.classList.toggle('active',a.getAttribute('href')==='#'+cur);
+  });
+});
+</script>
+</body>
+</html>
+ 
